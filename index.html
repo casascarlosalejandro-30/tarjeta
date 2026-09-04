@@ -129,6 +129,20 @@
   }
   .dl-btn:hover{background:rgba(255,255,255,.1)}
 
+  .share-btn{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    width:100%;margin-top:7px;padding:10px;border-radius:11px;
+    border:1px solid var(--accent-line);background:var(--accent-soft);
+    color:var(--text);font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;
+  }
+  .share-btn:hover{background:rgba(255,255,255,.11)}
+  .share-btn svg{width:15px;height:15px;color:var(--accent)}
+  .sh-url{font-size:.74rem;color:#5b616b;margin-top:8px;word-break:break-all;font-family:ui-monospace,Menlo,Consolas,monospace}
+  .qr-close.alt{background:var(--accent);color:var(--on-accent)}
+  .qr-close.alt:hover{background:var(--accent-hover)}
+  .qr-close.ghost{background:transparent;color:#5b616b;border:1px solid #d9dde2;margin-top:6px}
+  .qr-close.ghost:hover{background:#f1f3f5}
+
   footer{margin-top:12px;text-align:center;color:var(--text-dim);font-size:.66rem}
 
   .overlay{
@@ -219,6 +233,11 @@
     </button>
   </div>
 
+  <button class="share-btn" id="shareCard" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>
+    <span data-i18n="shareCard">Compartir esta tarjeta</span>
+  </button>
+
   <div class="palette" id="palette">
     <span class="lbl" data-i18n="paletteLbl">Color</span>
     <span class="sw-row" id="sw-row"></span>
@@ -234,6 +253,18 @@
     <p data-i18n="qrModalText">Apuntá la cámara de otro celular a este código.</p>
     <div class="qr-box" id="qrBox"><img alt="QR vCard - Carlos A Casas" src="data:image/png;base64,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"></div>
     <button class="qr-close" id="qrClose" type="button" data-i18n="close">Cerrar</button>
+  </div>
+</div>
+
+<div class="overlay" id="shareOv" role="dialog" aria-modal="true" aria-labelledby="shTitle">
+  <div class="qr-card">
+    <h2 id="shTitle" data-i18n="shareTitle">Compartir mi tarjeta</h2>
+    <p data-i18n="shareText">Escaneá el código o copiá el enlace.</p>
+    <div class="qr-box"><img alt="QR de la tarjeta web de Carlos A Casas" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAJYAQMAAACEqAqfAAAABlBMVEX///8AAABVwtN+AAAACXBIWXMAAA7EAAAOxAGVKw4bAAADGUlEQVR4nO3cMXbCMAyAYfEYGDkCR+FoydFylByhI0NfXRzJsmTSPgaY+DX0ubX1mUn1E06k5PiRe1zqqA7ObXAKS0Su5av+cUgt4x+wsLCwPtRaxOOkluys7BNhRUrFwsLCwmrWWZcvak334U0XnMt3QOdWvK/3n99qWfFesbCwsLD+sVZdUivwUXM32zbx0oyFhYWF9XSNtvhqKSKHWqP1iNt7ClhYWFhYu5bHaJV29rWz8KUNpG/iqVhYWFhYr7dS9HO0lnU/Rx+0P2Hn6Ny4sMDCwsLCKkUeYyrWhihqjaXYrScCCwsL6/Os0J+o0e9/hVJsjYuQYQOPFQsLCwvLLI1jO7kefEZT8oQ1F8K92lvLOPnZFwsLC+uzrdJCr3UVT0mlOPYUfHcv3pNtgoWFhYX1WivduJWWUh76vhb2LyIcsEv4NFhYWFhY4imhDXFJx2UNu0smSpzbblv04o2FhYWFFboNi3h/wjsXx2LRG8Ihox152wQWFhYWloS49pRbK8V2HcGOuL5J+AbO4iaChYWFhWXEH62D8V6txyJevP37NMHCwsLC2rLqKPQUymOK2vYgg+z3FHR3LCwsLKx3WFuEei+heHtKiL/vkmFhYWF9uhXCUuben8jXvGrjoujvvlvJ97+wsLCwsLQNIS13DD/7brGm03Eo3q1GY2FhYWGFDoGlzDrwvm+NfChe2iZmzVq8sbCwsLCi5TV66qU4vFvm4JvohKOpP4GFhYWF9TYrvq9Wq7m/r/YQH3EYYir6HwELCwsLa78tYX3fVIolbZKLd6zRWFhYWFheo2vkR8e8RsevzUqOn/4ZsLCwsLD2wnoKdejXZ+OzD75JDb9waxlYWFhYH2+VHPGa12Ov9tIXxheEV6sGFhYWFtbQX4292hRbi9Ymhhq9BRYWFhbWu6zx+7S1T8QX2ZY4EWO2j4KFhYWFtW9Ze3dpK2qE43K7mluH8WEzLCwsLKynrDElFG8/FK+2KxYWFhbWXoq3CvJ7FWed0BX+coQtsLCwsLC6laLXaL0+O24iQ08hPciAhYWFhfVS6xfFxcore6cgqwAAAABJRU5ErkJggg=="></div>
+    <p class="sh-url">casascarlosalejandro-30.github.io/tarjeta</p>
+    <button class="qr-close alt" id="shShare" type="button" hidden data-i18n="shareNative">Compartir…</button>
+    <button class="qr-close" id="shCopy" type="button" data-i18n="copyLink">Copiar enlace</button>
+    <button class="qr-close ghost" id="shClose" type="button" data-i18n="close">Cerrar</button>
   </div>
 </div>
 
@@ -266,6 +297,12 @@
       paletteLbl: "Color · tecla C para mostrar / ocultar",
       dlVersion: "Descargar tarjeta con este color",
       downloaded: "Archivo descargado — ya podés enviarlo",
+      shareCard: "Compartir esta tarjeta",
+      shareTitle: "Compartir mi tarjeta",
+      shareText: "Escaneá el código o copiá el enlace.",
+      copyLink: "Copiar enlace",
+      shareNative: "Compartir…",
+      linkCopied: "Enlace copiado",
       footer: "Tarjeta de presentación digital",
       copiedEmail: "Email copiado", copiedPhone: "Teléfono copiado", contactReady: "Contacto descargado"
     },
@@ -282,6 +319,12 @@
       paletteLbl: "Color · press C to show / hide",
       dlVersion: "Download card with this colour",
       downloaded: "File downloaded — ready to send",
+      shareCard: "Share this card",
+      shareTitle: "Share my card",
+      shareText: "Scan the code or copy the link.",
+      copyLink: "Copy link",
+      shareNative: "Share…",
+      linkCopied: "Link copied",
       footer: "Digital business card",
       copiedEmail: "Email copied", copiedPhone: "Phone copied", contactReady: "Contact downloaded"
     }
@@ -454,6 +497,7 @@
     var pl = doc.querySelector("#palette"); if (pl) pl.classList.remove("is-visible");
     var to = doc.querySelector("#toast"); if (to) { to.classList.remove("show"); to.textContent = ""; }
     var ov = doc.querySelector("#overlay"); if (ov) ov.classList.remove("open");
+    var so = doc.querySelector("#shareOv"); if (so) so.classList.remove("open");
     var html = "<!doctype html>\n" + doc.outerHTML + "\n";
     var blob = new Blob([html], { type: "text/html;charset=utf-8" });
     var url = URL.createObjectURL(blob);
@@ -464,13 +508,30 @@
     toast(t("downloaded"));
   });
 
+  var PAGE_URL = "https://casascarlosalejandro-30.github.io/tarjeta/";
+
   var overlay = document.getElementById("overlay");
-  function openQR(){ overlay.classList.add("open"); }
-  function closeQR(){ overlay.classList.remove("open"); }
-  document.getElementById("showQR").addEventListener("click", openQR);
-  document.getElementById("qrClose").addEventListener("click", closeQR);
-  overlay.addEventListener("click", function(e){ if (e.target === overlay) closeQR(); });
-  document.addEventListener("keydown", function(e){ if (e.key === "Escape") closeQR(); });
+  var shareOv = document.getElementById("shareOv");
+  function open(el){ el.classList.add("open"); }
+  function closeAll(){ overlay.classList.remove("open"); shareOv.classList.remove("open"); }
+  document.getElementById("showQR").addEventListener("click", function(){ open(overlay); });
+  document.getElementById("qrClose").addEventListener("click", closeAll);
+  document.getElementById("shareCard").addEventListener("click", function(){ open(shareOv); });
+  document.getElementById("shClose").addEventListener("click", closeAll);
+  document.getElementById("shCopy").addEventListener("click", function(){ copyText(PAGE_URL, t("linkCopied")); });
+
+  var shShare = document.getElementById("shShare");
+  if (navigator.share) {
+    shShare.hidden = false;
+    shShare.addEventListener("click", function(){
+      navigator.share({ title: "Carlos A Casas", text: "Mi tarjeta de presentación", url: PAGE_URL }).catch(function(){});
+    });
+  }
+
+  [overlay, shareOv].forEach(function(o){
+    o.addEventListener("click", function(e){ if (e.target === o) closeAll(); });
+  });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape") closeAll(); });
 
   applyLang();
 })();
