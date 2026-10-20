@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-palette="platino">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -13,8 +13,8 @@
     --surface:rgba(255,255,255,.05); --surface-2:rgba(255,255,255,.07);
     --border:rgba(255,255,255,.10); --border-strong:rgba(255,255,255,.18);
     --text:#f4f5f7; --text-muted:#a7adb8; --text-dim:#7b828c;
-    --accent:#d9b26b; --accent-soft:rgba(217,178,107,.14); --accent-line:rgba(217,178,107,.32);
-    --accent-hover:#e4c07f; --on-accent:#1a1204;
+    --accent:#cbd2dc; --accent-soft:rgba(203,210,220,.14); --accent-line:rgba(203,210,220,.32);
+    --accent-hover:#dde3ea; --on-accent:#14171c;
     --radius:22px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -23,7 +23,7 @@
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     color:var(--text);
     background:
-      radial-gradient(1000px 640px at 80% -10%, rgba(217,178,107,.10), transparent 60%),
+      radial-gradient(1000px 640px at 80% -10%, rgba(203,210,220,.08), transparent 60%),
       radial-gradient(820px 640px at 6% 110%, rgba(120,150,220,.07), transparent 55%),
       linear-gradient(180deg,var(--bg-1),var(--bg-0));
     background-attachment:fixed;
@@ -428,7 +428,7 @@
   }
   function isPal(id){ return PALETTES.some(function(p){ return p.id === id; }); }
   function palById(id){ return PALETTES.filter(function(p){ return p.id === id; })[0]; }
-  var curPal = "oro";
+  var curPal = "platino";
 
   function applyPalette(p){
     curPal = p.id;
@@ -450,7 +450,7 @@
     var hash = (location.hash || "").replace("#", "").toLowerCase();
     if (isPal(hash)) return hash;
     try { var s = (localStorage.getItem("cc-palette") || "").toLowerCase(); if (isPal(s)) return s; } catch (e) {}
-    return "oro";
+    return "platino";
   }
 
   var paletteBox = document.getElementById("palette");
